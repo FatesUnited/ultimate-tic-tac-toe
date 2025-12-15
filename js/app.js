@@ -1,19 +1,3 @@
-//1) Define the required variables used to track the state of the game.
-
-//2) Store cached element references.
-
-//3) Upon loading, the game state should be initialized, and a function should 
-//   be called to render this game state.
-
-//4) The state of the game should be rendered to the user.
-
-//5) Define the required constants.
-
-//6) Handle a player clicking a square with a `handleClick` function.
-
-//7) Create Reset functionality.
-
-
 /*-------------------------------- Constants --------------------------------*/
 const winningCombos = [
     [0, 1, 2],
@@ -28,13 +12,22 @@ const winningCombos = [
 
 
 /*---------------------------- Variables (state) ----------------------------*/
-let board = [];
+let mainBoard = [];
+let board0 = [];
+let board1 = [];
+let board2 = [];
+let board3 = [];
+let board4 = [];
+let board5 = [];
+let board6 = [];
+let board7 = [];
+let board8 = [];
 let turn;
 let winner;
 let tie;
 
 /*------------------------ Cached Element References ------------------------*/
-const boardEl = document.querySelector('.board');
+const boardEls = document.querySelectorAll('.board');
 const squareEls = document.querySelectorAll('.sqr');
 const messageEl = document.querySelector('#message');
 const resetBtnEl = document.querySelector('#reset');
@@ -43,10 +36,24 @@ init();
 
 /*-------------------------------- Functions --------------------------------*/
 function init() {
-    board = ['','','','','','','','',''];
+    mainBoard = ['','','','','','','','',''];
+    board0 = ['','','','','','','','',''];
+    board1 = ['','','','','','','','',''];
+    board2 = ['','','','','','','','',''];
+    board3 = ['','','','','','','','',''];
+    board4 = ['','','','','','','','',''];
+    board5 = ['','','','','','','','',''];
+    board6 = ['','','','','','','','',''];
+    board7 = ['','','','','','','','',''];
+    board8 = ['','','','','','','','',''];
     turn = 'X';
     winner = false;
     tie = false;
+
+    squareEls.forEach(sq => {
+        sq.textContent = '';
+    })
+
     render();
 }
 
@@ -55,24 +62,20 @@ function render() {
     updateMessage();
 }
 
-function updateBoard() {
-    board.forEach((sq, index) => {
-        if(board[index] === 'X') {
-            squareEls[index].textContent = 'X';
-        }
-        else if (board[index] === 'O') {
-            squareEls[index].textContent = 'O';
-        } else {
-            squareEls[index].textContent = '';
-        }
-    });
+function updateBoard(eventId) {
+    let nodeEl = Array.from(squareEls).find(el => {
+        return el.id === eventId;
+    })
+    
+    if (nodeEl) {
+        nodeEl.textContent = turn;
+    }
 }
 
 function updateMessage() {
     if(winner === false) {
         if (tie === false) {
             messageEl.innerText = `It is currently ${turn}'s turn`;
-            updateBoard();
         }
         else {
             messageEl.innerText = `It's a tie!`;
@@ -85,27 +88,56 @@ function updateMessage() {
 }
 
 function handleClick(event) {
+    let boardNum = Number(event.target.id[1]); // used to pass the small board to placePiece()
+    let squareNum = Number(event.target.id[3]); // used to grab the index of the small board for placePiece()
+    let sqNum = event.target.id; // userd to grab the correct element to render the piece
+
     if(event.target.textContent === 'X' || event.target.textContent === 'O') {
         return;
     }
     
     if(winner) {
         return;
-
     }
 
-    placePiece(event.target.id);
-    checkForWinner();
-    checkForTie();
+    let board = determineBoard(boardNum);
+    
+    // console.log(board);
+    // console.log(sqNum);
+
+    placePiece(board, squareNum);
+    updateBoard(sqNum);
+    // checkForWinner();
+    // checkForTie();
     switchPlayerTurn();
 
     render();
 }
 
-function placePiece(index) {
+function determineBoard(board) {
+    if (board === 0) {
+        return board0;
+    } else if (board === 1) {
+        return board1;
+    } else if (board === 2) {
+        return board2;
+    } else if (board === 3) {
+        return board3;
+    } else if (board === 4) {
+        return board4;
+    } else if (board === 5) {
+        return board5;
+    } else if (board === 6) {
+        return board6;
+    } else if (board === 7) {
+        return board7;
+    } else if (board === 8) {
+        return board8;
+    } 
+    return;
+}
+function placePiece(board, index) {
     board[index] = turn;
-
-    updateBoard();
     // console.log(board);
 }
 
@@ -170,5 +202,7 @@ function switchPlayerTurn() {
 
 
 /*----------------------------- Event Listeners -----------------------------*/
-const squareIndex = boardEl.addEventListener('click', handleClick);
+const squareIndex = boardEls.forEach(board => {
+    board.addEventListener('click', handleClick);
+})
 const reset = resetBtnEl.addEventListener('click', init);

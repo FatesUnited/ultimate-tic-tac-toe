@@ -5,24 +5,113 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./css/style.css">
   <script defer src="./js/app.js"></script>
-  <title>Tic-Tac-Toe</title>
+  <title>Ultimate Tic-Tac-Toe</title>
 </head>
 <body>
-  <h1>Tic-Tac-Toe</h1>
-  <h2 id="message">Message</h2>
-
-  <section class="board">
-    <div class="sqr" id="0"></div>
-    <div class="sqr" id="1"></div>
-    <div class="sqr" id="2"></div>
-    <div class="sqr" id="3"></div>
-    <div class="sqr" id="4"></div>
-    <div class="sqr" id="5"></div>
-    <div class="sqr" id="6"></div>
-    <div class="sqr" id="7"></div>
-    <div class="sqr" id="8"></div>
-  </section>
-
+  <h1>Ultimate Tic-Tac-Toe</h1>
   <button id="reset">Reset!</button>
+  <h2 id="message">Message</h2>
+  <hr>
+  <section id="main-board">
+    <section class="board" id="board0">
+      <div class="sqr" id="b0e0"></div>
+      <div class="sqr" id="b0e1"></div>
+      <div class="sqr" id="b0e2"></div>
+      <div class="sqr" id="b0e3"></div>
+      <div class="sqr" id="b0e4"></div>
+      <div class="sqr" id="b0e5"></div>
+      <div class="sqr" id="b0e6"></div>
+      <div class="sqr" id="b0e7"></div>
+      <div class="sqr" id="b0e8"></div>
+    </section>
+    <section class="board" id="board1">
+      <div class="sqr" id="b1e0"></div>
+      <div class="sqr" id="b1e1"></div>
+      <div class="sqr" id="b1e2"></div>
+      <div class="sqr" id="b1e3"></div>
+      <div class="sqr" id="b1e4"></div>
+      <div class="sqr" id="b1e5"></div>
+      <div class="sqr" id="b1e6"></div>
+      <div class="sqr" id="b1e7"></div>
+      <div class="sqr" id="b1e8"></div>
+    </section>
+    <section class="board" id="board2">
+      <div class="sqr" id="b2e0"></div>
+      <div class="sqr" id="b2e1"></div>
+      <div class="sqr" id="b2e2"></div>
+      <div class="sqr" id="b2e3"></div>
+      <div class="sqr" id="b2e4"></div>
+      <div class="sqr" id="b2e5"></div>
+      <div class="sqr" id="b2e6"></div>
+      <div class="sqr" id="b2e7"></div>
+      <div class="sqr" id="b2e8"></div>
+    </section>
+    <section class="board" id="board3">
+      <div class="sqr" id="b3e0"></div>
+      <div class="sqr" id="b3e1"></div>
+      <div class="sqr" id="b3e2"></div>
+      <div class="sqr" id="b3e3"></div>
+      <div class="sqr" id="b3e4"></div>
+      <div class="sqr" id="b3e5"></div>
+      <div class="sqr" id="b3e6"></div>
+      <div class="sqr" id="b3e7"></div>
+      <div class="sqr" id="b3e8"></div>
+    </section>
+    <section class="board" id="board4">
+      <div class="sqr" id="b4e0"></div>
+      <div class="sqr" id="b4e1"></div>
+      <div class="sqr" id="b4e2"></div>
+      <div class="sqr" id="b4e3"></div>
+      <div class="sqr" id="b4e4"></div>
+      <div class="sqr" id="b4e5"></div>
+      <div class="sqr" id="b4e6"></div>
+      <div class="sqr" id="b4e7"></div>
+      <div class="sqr" id="b4e8"></div>
+    </section>
+    <section class="board" id="board5">
+      <div class="sqr" id="b5e0"></div>
+      <div class="sqr" id="b5e1"></div>
+      <div class="sqr" id="b5e2"></div>
+      <div class="sqr" id="b5e3"></div>
+      <div class="sqr" id="b5e4"></div>
+      <div class="sqr" id="b5e5"></div>
+      <div class="sqr" id="b5e6"></div>
+      <div class="sqr" id="b5e7"></div>
+      <div class="sqr" id="b5e8"></div>
+    </section>
+    <section class="board" id="board6">
+      <div class="sqr" id="b6e0"></div>
+      <div class="sqr" id="b6e1"></div>
+      <div class="sqr" id="b6e2"></div>
+      <div class="sqr" id="b6e3"></div>
+      <div class="sqr" id="b6e4"></div>
+      <div class="sqr" id="b6e5"></div>
+      <div class="sqr" id="b6e6"></div>
+      <div class="sqr" id="b6e7"></div>
+      <div class="sqr" id="b6e8"></div>
+    </section>
+    <section class="board" id="board7">
+      <div class="sqr" id="b7e0"></div>
+      <div class="sqr" id="b7e1"></div>
+      <div class="sqr" id="b7e2"></div>
+      <div class="sqr" id="b7e3"></div>
+      <div class="sqr" id="b7e4"></div>
+      <div class="sqr" id="b7e5"></div>
+      <div class="sqr" id="b7e6"></div>
+      <div class="sqr" id="b7e7"></div>
+      <div class="sqr" id="b7e8"></div>
+    </section>
+    <section class="board" id="board8">
+      <div class="sqr" id="b8e0"></div>
+      <div class="sqr" id="b8e1"></div>
+      <div class="sqr" id="b8e2"></div>
+      <div class="sqr" id="b8e3"></div>
+      <div class="sqr" id="b8e4"></div>
+      <div class="sqr" id="b8e5"></div>
+      <div class="sqr" id="b8e6"></div>
+      <div class="sqr" id="b8e7"></div>
+      <div class="sqr" id="b8e8"></div>
+    </section>
+  </section>
 </body>
 </html>
