@@ -91,6 +91,7 @@ function handleClick(event) {
     let boardNum = Number(event.target.id[1]); // used to pass the small board to placePiece()
     let squareNum = Number(event.target.id[3]); // used to grab the index of the small board for placePiece()
     let sqNum = event.target.id; // userd to grab the correct element to render the piece
+    let board = determineBoard(boardNum);
 
     if(event.target.textContent === 'X' || event.target.textContent === 'O') {
         return;
@@ -99,17 +100,36 @@ function handleClick(event) {
     if(winner) {
         return;
     }
-
-    let board = determineBoard(boardNum);
     
-    // console.log(board);
-    // console.log(sqNum);
+    let bPos = mainBoard.findIndex(str => {
+        return str === 'A'
+    })
 
-    placePiece(board, squareNum);
-    updateBoard(sqNum);
+    if (bPos === -1 || bPos === boardNum) {
+        // console.log("valid")
+
+        if (board) {
+            if(bPos >= 0 && bPos <= 8) {
+                mainBoard[bPos] = '';
+            }
+            placePiece(board, squareNum);
+            updateBoard(sqNum);
+            switchPlayerTurn();
+        }
+    } else {
+        console.log("Not valid");
+    }
+    
+    // console.log(boardNum);
+    // console.log(squareNum);
+    // console.log(sqNum);
+    // console.log(board);
+
+    // console.log(mainBoard);
+    
+    
     // checkForWinner();
     // checkForTie();
-    switchPlayerTurn();
 
     render();
 }
@@ -134,11 +154,16 @@ function determineBoard(board) {
     } else if (board === 8) {
         return board8;
     } 
-    return;
 }
-function placePiece(board, index) {
+
+function placePiece(board, index) {    
     board[index] = turn;
     // console.log(board);
+    if(mainBoard[index] !== 'X' && mainBoard[index] !== 'O' && mainBoard[index] !== 'T') {
+        mainBoard[index] = 'A';
+        // console.log(mainBoard);
+    }
+    
 }
 
 function checkForWinner() {
