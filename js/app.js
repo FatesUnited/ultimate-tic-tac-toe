@@ -81,11 +81,9 @@ function updateMessage() {
         }
         else {
             messageEl.innerText = `It's a tie!`;
-            // console.log("It's a tie!");
         }
     } else {
         messageEl.innerText = `${turn} is the winner!`;
-        // console.log(`${turn} is the winner!`);
     }
 }
 
@@ -133,20 +131,13 @@ function handleClick(event) {
             }
             switchPlayerTurn();
         }
-    } else {
-        console.log("Not valid");
-    }
+    } 
     
     // console.log(boardNum);
     // console.log(squareNum);
     // console.log(sqNum);
-    console.log(board);
-
-    console.log(mainBoard);
-    
-    
-    
-    // checkForTie();
+    // console.log(board);
+    // console.log(mainBoard);
 
     render();
 }
@@ -196,8 +187,6 @@ function checkForWinner(board) {
             if (board[winningCombos[i][0]] === board[winningCombos[i][1]]) {
                 if (board[winningCombos[i][0]] === board[winningCombos[i][2]]) {
                     return true;
-                    // winner = true;
-                    // console.log(`Winner! ${winner}`);
                 }
             }
 
@@ -205,30 +194,18 @@ function checkForWinner(board) {
     }
 }
 
-function checkForTie(board) {
-    // let hasSpace = false;
-    
+function checkForTie(board) {  
     if(winner === true) {
         return;
     }
 
     for (let i = 0; i < board.length; i++) {
         if(board[i] === '') { 
-            // hasSpace = true;
             return false;
         }
     }
 
     return true;
-    // if(hasSpace) { 
-    //     return false;
-    //     // tie = false;
-    //     // console.log(`Tie! ${tie}`);
-    // } else {
-    //     return true;
-    //     // tie = true;
-    //     // console.log(`Tie! ${tie}`);
-    // }    
 }
 
 function switchPlayerTurn() {
@@ -238,11 +215,9 @@ function switchPlayerTurn() {
     
     if (turn === 'X') {
         turn = 'O';
-        // console.log(`Turn! ${turn}`);
     }
     else if (turn === 'O') {
         turn = 'X';
-        // console.log(`Turn! ${turn}`);
     }
 }
 
