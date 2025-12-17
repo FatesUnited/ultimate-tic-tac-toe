@@ -46,3 +46,11 @@ body {
   justify-content: center;
   gap: 20px;
 }
+
+.highlightMove {
+  background-color: green;
+}
+
+.lastMove {
+  background-color: orange;
+}

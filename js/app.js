@@ -76,7 +76,7 @@ function init() {
 function render() {
     updateBoard();
     updateMessage();
-    // highlightMove();
+    highlightMove();
 }
 
 function updateBoard(eventId) {
@@ -103,13 +103,29 @@ function updateMessage() {
 }
 
 function highlightMove() {
+    squareEls.forEach(el => {
+        el.classList.remove("highlightMove")
+    })
+
     if(bPos === -1) {
-        console.log('all');
+        squareEls.forEach(el => {
+            if (el.textContent === '' && !el.parentNode.classList.contains('bWinnerX') && !el.parentNode.classList.contains('bWinnerO') && !el.parentNode.classList.contains('bWinnerT')) {
+                el.classList.add("highlightMove");
+            }
+        })
     }
     else {
-        console.log(mainBoard[bPos]);
-        console.log(mainBoard)
-        console.log(bPos)
+        document.querySelectorAll(`#board${bPos} .sqr`).forEach(sq => {
+            if (sq.textContent === '') {
+                sq.classList.add("highlightMove");
+            }
+        })
+    }
+
+    if (winner || tie) {
+        squareEls.forEach(el => {
+            el.classList.remove("highlightMove")
+        })
     }
 }
 
@@ -132,15 +148,15 @@ function handleClick(event) {
     })
 
     if (bPos === -1 || bPos === boardNum) {
-        // console.log("valid")
-        if (checkForWinner(board)) {
-            return;
-        }
-
         if (board) {
+            if (checkForWinner(board)) {
+                return;
+            }
+
             if(bPos >= 0 && bPos <= 8) {
                 mainBoard[bPos] = '';
             }
+
             placePiece(board, squareNum);
             updateBoard(sqNum);
             if(checkForWinner(board)) {
@@ -201,10 +217,9 @@ function placePiece(board, index) {
     
     board[index] = turn;
     
-    // console.log(board);
-    if(mainBoard[index] !== 'X' && mainBoard[index] !== 'O' && mainBoard[index] !== 'T') {
+    if(mainBoard[index] !== 'X' && mainBoard[index] !== 'O' && mainBoard[index] !== 'T' && !checkForWinner(board)) {
         mainBoard[index] = 'A';
-        // console.log(mainBoard);
+        bPos = index;
     }
     else {
         bPos = -1;
