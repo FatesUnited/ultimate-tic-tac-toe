@@ -48,9 +48,9 @@ body {
 }
 
 .highlightMove {
-  background-color: green;
+  background-color: lightgreen;
 }
 
 .lastMove {
-  background-color: orange;
+  background-color: blueviolet;
 }
